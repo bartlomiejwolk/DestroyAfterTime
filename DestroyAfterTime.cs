@@ -5,6 +5,24 @@ namespace DestroyAfterTimeEx {
 
     public class DestroyAfterTime : MonoBehaviour {
 
+        #region CONSTANTS
+
+        public const string Version = "v0.1.0";
+        public const string Extension = "DestroyAfterTime";
+
+        #endregion
+
+        #region FIELDS
+
+        /// <summary>
+        /// Allows identify component in the scene file when reading it with
+        /// text editor.
+        /// </summary>
+        [SerializeField]
+        private string componentName = "DestroyAfterTime";
+ 
+        #endregion
+
         #region INSPECTOR FIELDS
 
         /// GO to be destroyed.
@@ -15,6 +33,9 @@ namespace DestroyAfterTimeEx {
         [SerializeField]
             private float delay;
 
+        [SerializeField]
+        private string description = "Description";
+ 
         #endregion
 
         #region PROPERTIES
@@ -29,6 +50,11 @@ namespace DestroyAfterTimeEx {
         public float Delay {
             get { return delay; }
             set { delay = value; }
+        }
+
+        public string Description {
+            get { return description; }
+            set { description = value; }
         }
 
         #endregion
