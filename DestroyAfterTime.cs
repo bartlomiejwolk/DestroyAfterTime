@@ -27,7 +27,7 @@ namespace DestroyAfterTimeEx {
 
         /// GO to be destroyed.
         [SerializeField]
-        private GameObject target;
+        private GameObject targetGO;
 
         /// Destroy delay.
         [SerializeField]
@@ -41,9 +41,9 @@ namespace DestroyAfterTimeEx {
         #region PROPERTIES
 
         /// GO to be destroyed.
-        public GameObject Target {
-            get { return target; }
-            set { target = value; }
+        public GameObject TargetGO {
+            get { return targetGO; }
+            set { targetGO = value; }
         }
 
         /// Destroy delay.
@@ -63,8 +63,8 @@ namespace DestroyAfterTimeEx {
 
         // todo extract
         private void Start () {
-            if (Target) {
-                Destroy(Target, Delay);
+            if (TargetGO) {
+                Destroy(TargetGO, Delay);
             }
             else {
                 Utilities.MissingReference(this, "Target");
@@ -76,7 +76,7 @@ namespace DestroyAfterTimeEx {
         #region METHODS
 
         public void Now() {
-            Destroy(Target);
+            Destroy(TargetGO);
         }
 
         #endregion

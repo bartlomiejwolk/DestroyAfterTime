@@ -15,6 +15,8 @@ namespace DestroyAfterTimeEx {
         #region SERIALIZED PROPERTIES
 
         private SerializedProperty description;
+        private SerializedProperty targetGO;
+        private SerializedProperty delay;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -27,19 +29,39 @@ namespace DestroyAfterTimeEx {
             DrawDescriptionTextArea();
 
             EditorGUILayout.Space();
+
+            DrawTargetGOField();
+            DrawDelayField();
             
             serializedObject.ApplyModifiedProperties();
         }
-
         private void OnEnable() {
             Script = (DestroyAfterTime) target;
             
             description = serializedObject.FindProperty("description");
+            targetGO = serializedObject.FindProperty("targetGO");
+            delay = serializedObject.FindProperty("delay");
         }
 
         #endregion UNITY MESSAGES
 
         #region INSPECTOR CONTROLS
+        private void DrawTargetGOField() {
+            EditorGUILayout.PropertyField(
+                targetGO,
+                new GUIContent(
+                    "Target",
+                    "Game object to be destroyed."));
+        }
+
+        private void DrawDelayField() {
+            EditorGUILayout.PropertyField(
+                delay,
+                new GUIContent(
+                    "Delay",
+                    "Delay before destroying the game object."));
+        }
+
         
         private void DrawVersionLabel() {
             EditorGUILayout.LabelField(
