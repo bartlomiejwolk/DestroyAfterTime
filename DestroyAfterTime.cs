@@ -13,9 +13,22 @@ namespace DestroyAfterTimeEx {
         [SerializeField]
             private float delay;
 
+        /// GO to be destroyed.
+        public GameObject Target {
+            get { return target; }
+            set { target = value; }
+        }
+
+        /// Destroy delay.
+        public float Delay {
+            get { return delay; }
+            set { delay = value; }
+        }
+
+        // todo extract
         private void Start () {
-            if (target) {
-                Destroy(target, delay);
+            if (Target) {
+                Destroy(Target, Delay);
             }
             else {
                 Utilities.MissingReference(this, "Target");
@@ -23,7 +36,7 @@ namespace DestroyAfterTimeEx {
         }
 
         public void Now() {
-            Destroy(target);
+            Destroy(Target);
         }
     }
 }
