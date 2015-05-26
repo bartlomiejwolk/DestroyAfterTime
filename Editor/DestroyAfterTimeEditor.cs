@@ -14,9 +14,9 @@ namespace DestroyAfterTimeEx {
 
         #region SERIALIZED PROPERTIES
 
+        private SerializedProperty delay;
         private SerializedProperty description;
         private SerializedProperty targetGO;
-        private SerializedProperty delay;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -32,12 +32,13 @@ namespace DestroyAfterTimeEx {
 
             DrawTargetGOField();
             DrawDelayField();
-            
+
             serializedObject.ApplyModifiedProperties();
         }
+
         private void OnEnable() {
             Script = (DestroyAfterTime) target;
-            
+
             description = serializedObject.FindProperty("description");
             targetGO = serializedObject.FindProperty("targetGO");
             delay = serializedObject.FindProperty("delay");
@@ -46,13 +47,6 @@ namespace DestroyAfterTimeEx {
         #endregion UNITY MESSAGES
 
         #region INSPECTOR CONTROLS
-        private void DrawTargetGOField() {
-            EditorGUILayout.PropertyField(
-                targetGO,
-                new GUIContent(
-                    "Target",
-                    "Game object to be destroyed."));
-        }
 
         private void DrawDelayField() {
             EditorGUILayout.PropertyField(
@@ -62,7 +56,19 @@ namespace DestroyAfterTimeEx {
                     "Delay before destroying the game object."));
         }
 
-        
+        private void DrawDescriptionTextArea() {
+            description.stringValue = EditorGUILayout.TextArea(
+                description.stringValue);
+        }
+
+        private void DrawTargetGOField() {
+            EditorGUILayout.PropertyField(
+                targetGO,
+                new GUIContent(
+                    "Target",
+                    "Game object to be destroyed."));
+        }
+
         private void DrawVersionLabel() {
             EditorGUILayout.LabelField(
                 string.Format(
@@ -71,19 +77,15 @@ namespace DestroyAfterTimeEx {
                     DestroyAfterTime.Extension));
         }
 
-        private void DrawDescriptionTextArea() {
-            description.stringValue = EditorGUILayout.TextArea(
-                description.stringValue);
-        }
-
-        #endregion INSPECTOR
+        #endregion INSPECTOR CONTROLS
 
         #region METHODS
 
         [MenuItem("Component/DestroyAfterTime")]
         private static void AddEntryToComponentMenu() {
             if (Selection.activeGameObject != null) {
-                Selection.activeGameObject.AddComponent(typeof (DestroyAfterTime));
+                Selection.activeGameObject.AddComponent(
+                    typeof (DestroyAfterTime));
             }
         }
 

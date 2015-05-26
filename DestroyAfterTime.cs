@@ -1,50 +1,42 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace DestroyAfterTimeEx {
 
     public class DestroyAfterTime : MonoBehaviour {
-
         #region CONSTANTS
 
-        public const string Version = "v0.1.0";
         public const string Extension = "DestroyAfterTime";
+        public const string Version = "v0.1.0";
 
-        #endregion
+        #endregion CONSTANTS
 
         #region FIELDS
 
         /// <summary>
-        /// Allows identify component in the scene file when reading it with
-        /// text editor.
+        ///     Allows identify component in the scene file when reading it with
+        ///     text editor.
         /// </summary>
         [SerializeField]
         private string componentName = "DestroyAfterTime";
- 
-        #endregion
+
+        #endregion FIELDS
 
         #region INSPECTOR FIELDS
+
+        /// Destroy delay.
+        [SerializeField]
+        private float delay;
+
+        [SerializeField]
+        private string description = "Description";
 
         /// GO to be destroyed.
         [SerializeField]
         private GameObject targetGO;
 
-        /// Destroy delay.
-        [SerializeField]
-            private float delay;
-
-        [SerializeField]
-        private string description = "Description";
- 
-        #endregion
+        #endregion INSPECTOR FIELDS
 
         #region PROPERTIES
-
-        /// GO to be destroyed.
-        public GameObject TargetGO {
-            get { return targetGO; }
-            set { targetGO = value; }
-        }
 
         /// Destroy delay.
         public float Delay {
@@ -57,12 +49,18 @@ namespace DestroyAfterTimeEx {
             set { description = value; }
         }
 
-        #endregion
+        /// GO to be destroyed.
+        public GameObject TargetGO {
+            get { return targetGO; }
+            set { targetGO = value; }
+        }
+
+        #endregion PROPERTIES
 
         #region UNITY MESSAGES
 
         // todo extract
-        private void Start () {
+        private void Start() {
             if (TargetGO) {
                 Destroy(TargetGO, Delay);
             }
@@ -71,7 +69,7 @@ namespace DestroyAfterTimeEx {
             }
         }
 
-        #endregion
+        #endregion UNITY MESSAGES
 
         #region METHODS
 
@@ -79,6 +77,7 @@ namespace DestroyAfterTimeEx {
             Destroy(TargetGO);
         }
 
-        #endregion
+        #endregion METHODS
     }
+
 }
