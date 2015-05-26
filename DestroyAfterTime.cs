@@ -5,6 +5,8 @@ namespace DestroyAfterTimeEx {
 
     public class DestroyAfterTime : MonoBehaviour {
 
+        #region INSPECTOR FIELDS
+
         /// GO to be destroyed.
         [SerializeField]
         private GameObject target;
@@ -12,6 +14,10 @@ namespace DestroyAfterTimeEx {
         /// Destroy delay.
         [SerializeField]
             private float delay;
+
+        #endregion
+
+        #region PROPERTIES
 
         /// GO to be destroyed.
         public GameObject Target {
@@ -25,6 +31,10 @@ namespace DestroyAfterTimeEx {
             set { delay = value; }
         }
 
+        #endregion
+
+        #region UNITY MESSAGES
+
         // todo extract
         private void Start () {
             if (Target) {
@@ -35,8 +45,14 @@ namespace DestroyAfterTimeEx {
             }
         }
 
+        #endregion
+
+        #region METHODS
+
         public void Now() {
             Destroy(Target);
         }
+
+        #endregion
     }
 }
