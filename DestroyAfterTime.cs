@@ -1,30 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace OneDayGame {
-	public class DestroyAfterTime : GameComponent {
+namespace DestroyAfterTimeEx {
+
+	public class DestroyAfterTime : MonoBehaviour {
 
 		/// GO to be destroyed.
 		[SerializeField]
-			private GameObject _target;
+        private GameObject target;
 
 		/// Destroy delay.
 		[SerializeField]
-			private float _delay;
+			private float delay;
 
-		public override void Start () {
-			base.Start();
-
-			if (_target) {
-				Destroy(_target, _delay);
+		private void Start () {
+			if (target) {
+				Destroy(target, delay);
 			}
 			else {
-				MissingReference("_target");
+                Utilities.MissingReference(this, "Target");
 			}
 		}
 
 	    public void Now() {
-	        Destroy(_target);
+	        Destroy(target);
 	    }
 	}
 }
